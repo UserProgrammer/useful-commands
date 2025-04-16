@@ -1,5 +1,6 @@
 ### Commands
 - [git](#git)
+- [postgres](#postgres)
 
 ### git
 Create a tag in the current commit:
@@ -26,4 +27,20 @@ git show tag-name
 Push a tag to the remote repository (include `-f` option if the tag already exists):
 ```shell
 git push origin tag-name
+```
+
+</br>
+
+### postgres
+List all databases:
+```shell
+\list
+```
+Use a database for all subsequent queries:
+```shell
+\c database-name
+```
+List all tables:
+```shell
+\dt
 ```
