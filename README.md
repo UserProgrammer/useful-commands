@@ -3,6 +3,12 @@
 - [postgres](#postgres)
 - [vim](#vim)
 
+### Tasks
+- [Safely Remove USB-Attached Storage Device](#safely-remove-usb-attached-storage-device)
+
+</br>
+
+## Commands
 ### git
 Create a tag in the current commit:
 ```shell
@@ -50,5 +56,23 @@ List all tables:
 
 ### vim
 Find out which plugin was the last to assign a value to a setting
+
 ```vim
 :verbose set setting-name?
+```
+
+</br>
+
+## Tasks
+### Safely Remove USB-Attached Storage Device
+
+```bash
+# 1. Identify the device
+lsblk
+
+# 2. Unmount the device
+udisksctl unmount -b /dev/sda2
+
+# 3. Power-off the device
+udisksctl power-off -b /dev/sda2
+```
