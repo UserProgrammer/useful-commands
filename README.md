@@ -1,6 +1,7 @@
 ### Commands
 - [git](#git)
 - [postgres](#postgres)
+- [vim](#vim)
 
 ### git
 Create a tag in the current commit:
@@ -44,3 +45,10 @@ List all tables:
 ```shell
 \dt
 ```
+
+</br>
+
+### vim
+Find out which plugin was the last to assign a value to a setting
+```vim
+:verbose set setting-name?
