@@ -6,7 +6,7 @@
 ### Tasks
 - [Safely Remove USB-Attached Storage Device](#safely-remove-usb-attached-storage-device)
 
-</br>
+<br />
 
 ## Commands
 ### git
