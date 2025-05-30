@@ -5,6 +5,7 @@
 
 ### Tasks
 - [Safely Remove USB-Attached Storage Device](#safely-remove-usb-attached-storage-device)
+- [Generate a self-signed CA and an SSL certificate](#generate-a-self-signed-ca-and-an-ssl-certificate)
 
 <br />
 
@@ -75,4 +76,22 @@ udisksctl unmount -b /dev/sda2
 
 # 3. Power-off the device
 udisksctl power-off -b /dev/sda2
+```
+
+</br>
+
+### Generate a self-signed CA and an SSL certificate
+
+```shell
+# 1. Generate a root CA certificate and private key
+openssl req -x509 -new – key rsa:2048 -sha256 -nodes -out rootca.crt -keyout rootca.key -days 3650 -subj “/CN=Local CA
+
+# 2. Install the root CA certificate on your system by copying the 'rootca.crt' file to the '/usr/local/share/ca-certificates/' directory and running:
+sudo update-ca-certificates
+
+# 3. Generate a certificate signing request (CSR) for your project
+openssl req -new -nodes -newkey rsa:2048 -sha256 -keyout project.key -out project.csr -subj "/CN=localhost"
+
+# 4. Sign the CSR with your local CA. This command will sign the CSR (`project.csr`) with the root CA certificate (`rootca.crt`) and private key (`rootca.key`) and generate a signed certificate (`project.crt`) valid for 1 year.
+openssl x509 -req -in project.csr -CA rootca.crt -CAkey rootca.key -CAcreateserial -out project.crt -days 365 -sha256
 ```
