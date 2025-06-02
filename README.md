@@ -135,6 +135,8 @@ Endpoint   = <The peer's public IP address and port number>
 Execute the following command:
 `systemctl enable --now wg-quick@wg0`
 
+If you have started Wireguard with this config manually before, you need to shut it down first or systemd will not be able to start it!
+
 `wg-quick@wg0` is the name of the systemd unit being enabled and started. It refers to a templated unit called `wg-quick@.service`, which is used by WireGuard's helper script `wg-quick`.
 
 You can find the templated unit in one of the systemd unit directories by executing:
