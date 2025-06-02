@@ -3,9 +3,11 @@
 - [postgres](#postgres)
 - [vim](#vim)
 
-### Tasks
+### Recipes
 - [Safely Remove USB-Attached Storage Device](#safely-remove-usb-attached-storage-device)
 - [Generate a self-signed CA and an SSL certificate](#generate-a-self-signed-ca-and-an-ssl-certificate)
+- [Setup a Wireguard node](setup-a-wireguard-node)
+- [Setup Wireguard interface as a system service](setup-wireguard-interface-as-a-system-service)
 
 <br />
 
@@ -64,7 +66,7 @@ Find out which plugin was the last to assign a value to a setting
 
 </br>
 
-## Tasks
+## Recipes
 ### Safely Remove USB-Attached Storage Device
 
 ```bash
@@ -95,3 +97,45 @@ openssl req -new -nodes -newkey rsa:2048 -sha256 -keyout project.key -out projec
 # 4. Sign the CSR with your local CA. This command will sign the CSR (`project.csr`) with the root CA certificate (`rootca.crt`) and private key (`rootca.key`) and generate a signed certificate (`project.crt`) valid for 1 year.
 openssl x509 -req -in project.csr -CA rootca.crt -CAkey rootca.key -CAcreateserial -out project.crt -days 365 -sha256
 ```
+
+</br>
+
+### Setup a Wireguard node
+1. Create Wireguard keys
+```shell
+# Create a new private key
+wg genkey >> wg0-private.key
+
+# Create a new public key
+wg pubkey << wg0-private.key >> wg0-public.key
+```
+
+2. Populate the `/etc/wireguard/wg0.conf` file
+```init
+[Interface]
+PrivateKey = <contents of wg0-private.key>
+Address    = 10.0.0.1/32
+ListenPort = 51820
+
+PreUp    = 
+PostDown = 
+
+[Peer]
+PublicKeys = <The peer's public key>
+AllowedIps = <The peer's Wireguard IP address>
+Endpoint   = <The peer's public IP address and port number>
+```
+
+3. Start the Wireguard interface
+`wg-quick up wg0`
+
+</br>
+
+### Setup Wireguard interface as a system service
+Execute the following command:
+`systemctl enable --now wg-quick@wg0`
+
+`wg-quick@wg0` is the name of the systemd unit being enabled and started. It refers to a templated unit called `wg-quick@.service`, which is used by WireGuard's helper script `wg-quick`.
+
+You can find the templated unit in one of the systemd unit directories by executing:
+`systemctl cat wg-quick@.service`
