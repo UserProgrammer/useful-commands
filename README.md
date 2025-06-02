@@ -107,7 +107,7 @@ openssl x509 -req -in project.csr -CA rootca.crt -CAkey rootca.key -CAcreateseri
 wg genkey >> wg0-private.key
 
 # Create a new public key
-wg pubkey << wg0-private.key >> wg0-public.key
+wg pubkey < wg0-private.key >> wg0-public.key
 ```
 
 2. Populate the `/etc/wireguard/wg0.conf` file
