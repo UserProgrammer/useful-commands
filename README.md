@@ -6,8 +6,8 @@
 ### Recipes
 - [Safely Remove USB-Attached Storage Device](#safely-remove-usb-attached-storage-device)
 - [Generate a self-signed CA and an SSL certificate](#generate-a-self-signed-ca-and-an-ssl-certificate)
-- [Setup a Wireguard node](setup-a-wireguard-node)
-- [Setup Wireguard interface as a system service](setup-wireguard-interface-as-a-system-service)
+- [Setup a Wireguard node](#setup-a-wireguard-node)
+- [Setup Wireguard interface as a system service](#setup-wireguard-interface-as-a-system-service)
 
 <br />
 
