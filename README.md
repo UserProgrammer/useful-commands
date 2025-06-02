@@ -121,7 +121,7 @@ PreUp    =
 PostDown = 
 
 [Peer]
-PublicKeys = <The peer's public key>
+PublicKey  = <The peer's public key>
 AllowedIps = <The peer's Wireguard IP address>
 Endpoint   = <The peer's public IP address and port number>
 ```
