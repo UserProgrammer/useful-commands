@@ -117,8 +117,8 @@ PrivateKey = <contents of wg0-private.key>
 Address    = 10.0.0.1/32
 ListenPort = 51820
 
-PreUp    = 
-PostDown = 
+PreUp    = sysctl -w net.ipv4.ip_forward=1
+PostDown = sysctl -w net.ipv4.ip_forward=0
 
 [Peer]
 PublicKey  = <The peer's public key>
