@@ -141,3 +141,6 @@ If you have started Wireguard with this config manually before, you need to shut
 
 You can find the templated unit in one of the systemd unit directories by executing:
 `systemctl cat wg-quick@.service`
+
+You can check the service's status by executing:
+`systemctl status wg-quick@wg0`
