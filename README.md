@@ -1,6 +1,7 @@
 ### Commands
 - [git](#git)
 - [postgres](#postgres)
+- [scp](#scp)
 - [vim](#vim)
 
 ### Recipes
@@ -53,6 +54,14 @@ Use a database for all subsequent queries:
 List all tables:
 ```shell
 \dt
+```
+
+</br>
+
+### scp
+Copy file to remote location:
+```shell
+scp -i ~/.ssh/id_rsa ~/test.txt remote-user@127.0.0.1:/home/user/test.txt
 ```
 
 </br>
