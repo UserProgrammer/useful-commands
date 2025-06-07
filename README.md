@@ -111,6 +111,7 @@ openssl x509 -req -in project.csr -CA rootca.crt -CAkey rootca.key -CAcreateseri
 
 ### Setup a Wireguard node
 1. Create Wireguard keys
+
 ```shell
 # Create a new private key
 wg genkey >> wg0-private.key
@@ -120,6 +121,7 @@ wg pubkey < wg0-private.key >> wg0-public.key
 ```
 
 2. Populate the `/etc/wireguard/wg0.conf` file
+
 ```init
 [Interface]
 PrivateKey = <contents of wg0-private.key>
@@ -136,6 +138,7 @@ Endpoint   = <The peer's public IP address and port number>
 ```
 
 3. Start the Wireguard interface
+
 `wg-quick up wg0`
 
 </br>
